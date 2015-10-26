@@ -243,6 +243,7 @@ module ActiveAdmin
             params[key] = params[key].split  # turn into array
           end
         end
+        params
       end
 
 
