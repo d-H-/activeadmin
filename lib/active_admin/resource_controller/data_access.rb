@@ -239,7 +239,7 @@ module ActiveAdmin
       #   into an array using .split
       def split_search_params(params)
         params.keys.each do |key|
-          if key.to_s.ends_with? "_any" or key.to_s.ends_with? "_all"
+          if key.ends_with? "_any" or key.ends_with? "_all"
             params[key] = params[key].split  # turn into array
           end
         end
