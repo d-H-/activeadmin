@@ -222,7 +222,7 @@ module ActiveAdmin
       # Applies any Ransack search methods to the currently scoped collection.
       # Both `search` and `ransack` are provided, but we use `ransack` to prevent conflicts.
       def apply_filtering(chain)
-        @search = chain.ransack clean_search_params params[:q]
+        @search = chain.ransack split_search_params clean_search_params params[:q]
         @search.result
       end
 
@@ -233,6 +233,19 @@ module ActiveAdmin
           {}
         end
       end
+
+      # if search params end with _any or _all (e.g. email_cont_all), they'll be used
+      #   with ransackers that expect an array of input values. Convert the param string 
+      #   into an array using .split
+      def split_search_params(params)
+        params.keys.each do |key|
+          if key.to_s.ends_with? "_any" or key.to_s.ends_with? "_all"
+            params[key] = params[key].split  # turn into array
+          end
+        end
+      end
+
+
 
       def apply_scoping(chain)
         @collection_before_scope = chain
