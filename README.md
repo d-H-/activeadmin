@@ -1,3 +1,9 @@
+
+# Dave's fork
+
+This forks adds a "multiple term" search feature. It's describe in a Stack Overflow answer.
+http://stackoverflow.com/a/33358918/765287
+
 # Active Admin
 
 Active Admin is a Ruby on Rails framework for creating elegant backends for website administration.
